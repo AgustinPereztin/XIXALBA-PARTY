@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Fondo
+    uniqueID: 3916352807
+    locked: 0
+  - name: Mazorcas
+    uniqueID: 1026546397
+    locked: 0
+  - name: Player
+    uniqueID: 1465388695
+    locked: 0
