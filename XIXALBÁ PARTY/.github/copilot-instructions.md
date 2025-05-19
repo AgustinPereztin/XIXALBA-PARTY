@@ -2,13 +2,13 @@
 - Project name: XIXALBÁ PARTY
 - Unity version: Unity 2022.3.6f1
 - Active scene:
-  - Name: EquilibristaScene
+  - Name: CabezaRodante
   - Tags:
-    - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController
+    - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, Head
   - Layers:
-    - Default, TransparentFX, Ignore Raycast, Water, UI
+    - Default, TransparentFX, Ignore Raycast, Ground, Water, UI
 - Active game object:
-  - Name: GameManager
+  - Name: Canvas
   - Tag: Untagged
-  - Layer: Default
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
