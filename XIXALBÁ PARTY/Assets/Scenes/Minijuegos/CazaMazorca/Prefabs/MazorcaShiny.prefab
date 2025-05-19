@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1730255965078891175}
   - component: {fileID: 6950621274257268270}
   - component: {fileID: 6042640974956878336}
+  - component: {fileID: 3937299886276439477}
   m_Layer: 0
   m_Name: MazorcaShiny
-  m_TagString: Untagged
+  m_TagString: shiny
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,3 +162,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602bffaf999fefe41b09b47a36f3a63a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3937299886276439477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269122535508348560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e11a4889cb52d748a650ea10d95cd88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRotationSpeed: -200
+  maxRotationSpeed: 200

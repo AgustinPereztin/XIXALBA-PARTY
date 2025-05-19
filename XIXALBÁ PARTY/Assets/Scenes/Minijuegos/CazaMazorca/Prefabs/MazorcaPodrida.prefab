@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 468722859244267308}
   - component: {fileID: 1695111506107517060}
   - component: {fileID: 567097188427598195}
-  - component: {fileID: -1558125998072012781}
+  - component: {fileID: 5428573069492416153}
+  - component: {fileID: -6585408337589280652}
   m_Layer: 0
   m_Name: MazorcaPodrida
   m_TagString: Untagged
@@ -149,7 +150,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &-1558125998072012781
+--- !u!114 &5428573069492416153
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,6 +159,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 459142451739919194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 602bffaf999fefe41b09b47a36f3a63a, type: 3}
+  m_Script: {fileID: 11500000, guid: ab9a538ddfc542440a213fab2c47d0f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6585408337589280652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459142451739919194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e11a4889cb52d748a650ea10d95cd88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRotationSpeed: -200
+  maxRotationSpeed: 200
