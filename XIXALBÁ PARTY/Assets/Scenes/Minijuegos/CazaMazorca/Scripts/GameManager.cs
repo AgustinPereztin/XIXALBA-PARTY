@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
 
     public Spawner spawner;
 
+    public float Mazorcas_A_Agarrar = 10;
+    private float MazorcasAgarradas;
+
     void Awake()
     {
         instance = this;
@@ -28,8 +31,16 @@ public class GameManager : MonoBehaviour
             spawner.DetenerSpawns();
             vidasText.text = "";
             resultado.text = "¡Perdiste!";
-
-
+        }
+    }
+    public void Ganar()
+    {
+        MazorcasAgarradas ++;
+        if (MazorcasAgarradas == Mazorcas_A_Agarrar)
+        {
+            spawner.DetenerSpawns();
+            vidasText.text = "";
+            resultado.text = "¡Ganaste!";
         }
     }
 }
