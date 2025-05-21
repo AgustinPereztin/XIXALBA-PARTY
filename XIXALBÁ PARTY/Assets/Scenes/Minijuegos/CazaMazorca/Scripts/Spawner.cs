@@ -28,5 +28,10 @@ public class Spawner : MonoBehaviour
 
         // Instancia la mazorca
         Instantiate(mazorcaSeleccionada, spawnPosition, Quaternion.identity);
+
+    }
+    public void DetenerSpawns()
+    {
+        CancelInvoke("SpawnMazorca");
     }
 }

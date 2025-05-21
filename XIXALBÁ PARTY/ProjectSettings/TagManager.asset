@@ -4,12 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Head
+  - shiny
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
   - 
