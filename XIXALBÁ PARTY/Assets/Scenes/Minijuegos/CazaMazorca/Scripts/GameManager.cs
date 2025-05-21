@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
             spawner.DetenerSpawns();
             vidasText.text = "";
             resultado.text = "¡Perdiste!";
+            GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
         }
     }
     public void Ganar()
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
             spawner.DetenerSpawns();
             vidasText.text = "";
             resultado.text = "¡Ganaste!";
+            GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
         }
     }
 }

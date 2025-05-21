@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/InterfaceScene.unity
+    path: Assets/Scenes/InterfazPrincipal/InterfaceScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Minijuegos/CabezaRodante/CabezaRodante.unity
+    guid: d463d09bc64f3754598490bea2086301
+  - enabled: 1
+    path: Assets/Scenes/Minijuegos/CazaMazorca/CazaMazorcas.unity
+    guid: 7cefbc7c44b2cb94fb1262b20cad5fe8
+  - enabled: 1
+    path: Assets/Scenes/Minijuegos/Equilibrista/EquilibristaScene.unity
+    guid: 3a65668ca4af7f0479d4d6a72bb6bce6
   m_configObjects: {}

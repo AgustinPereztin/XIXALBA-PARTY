@@ -41,7 +41,9 @@ public class JumpMovement : MonoBehaviour
     }
     void Die()
     {
+
         perdisteText.gameObject.SetActive(true);
+        GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
 
     }
 
