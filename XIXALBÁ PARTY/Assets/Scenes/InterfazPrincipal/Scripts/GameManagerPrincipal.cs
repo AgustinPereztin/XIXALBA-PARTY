@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class GameManagerPrincipal : MonoBehaviour
 {
     public static GameManagerPrincipal instance;
 
-    public string[] minijuegoScenes;  // Nombres de las scenes de minijuegos
+    public string[] minijuegoScenes;  // todas las scenes
+    private List<string> minijuegosPendientes;
 
     void Awake()
     {
-        // Que no se destruya entre escenas
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            InicializarLista();
         }
         else
         {
@@ -23,10 +25,28 @@ public class GameManagerPrincipal : MonoBehaviour
         }
     }
 
+    void InicializarLista()
+    {
+        minijuegosPendientes = new List<string>(minijuegoScenes);
+    }
+
     public void CargarMinijuegoAleatorio()
     {
-        int randomIndex = Random.Range(0, minijuegoScenes.Length);
-        string sceneName = minijuegoScenes[randomIndex];
+        if (minijuegosPendientes.Count == 0)
+        {
+            // Si se terminaron, volver al menú o reiniciar
+            SceneManager.LoadScene("MainMenu");
+            InicializarLista();
+            return;
+        }
+
+        int randomIndex = Random.Range(0, minijuegosPendientes.Count);
+        string sceneName = minijuegosPendientes[randomIndex];
+
+        // Eliminar ese minijuego de la lista de pendientes
+        minijuegosPendientes.RemoveAt(randomIndex);
+
+        // Cargar minijuego
         SceneManager.LoadScene(sceneName);
     }
 }
