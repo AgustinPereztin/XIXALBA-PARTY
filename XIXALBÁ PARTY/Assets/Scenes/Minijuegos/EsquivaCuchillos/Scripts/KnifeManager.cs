@@ -54,6 +54,7 @@ public class KnifeManager : MonoBehaviour
         gameOver = true;
         loseText.SetActive(true);
         Invoke("RestartGame", 3f);
+        GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 
     void GameWon()
@@ -61,6 +62,8 @@ public class KnifeManager : MonoBehaviour
         gameOver = true;
         winText.SetActive(true);
         Invoke("RestartGame", 3f);
+        GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
+
     }
 
     void RestartGame()
