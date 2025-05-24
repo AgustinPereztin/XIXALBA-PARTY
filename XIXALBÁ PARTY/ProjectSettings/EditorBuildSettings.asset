@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minijuegos/Equilibrista/EquilibristaScene.unity
     guid: 3a65668ca4af7f0479d4d6a72bb6bce6
+  - enabled: 1
+    path: Assets/Scenes/Minijuegos/EsquivaCuchillos/EsquivaCuchillos.unity
+    guid: 2556892f4a5af6a4c86290c4dada9ec9
+  - enabled: 1
+    path: Assets/Scenes/Minijuegos/MayaDance/MayaDance.unity
+    guid: ade812a2292bbfb468a48f623e517fe7
   m_configObjects: {}

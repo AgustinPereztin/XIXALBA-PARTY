@@ -658,6 +658,7 @@ MonoBehaviour:
   - CabezaRodante
   - CazaMazorcas
   - EquilibristaScene
+  - EsquivaCuchillos
 --- !u!1 &2089269968
 GameObject:
   m_ObjectHideFlags: 0
