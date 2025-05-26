@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,16 +13,16 @@ public class DanceManager : MonoBehaviour
 
     public RectTransform BgTeclaRect;
     public string[] posiblesMensajes = {
-        "¡Muy bien!",
-        "¡Que Bien Bailas!",
-        "¡Guauu!",
-        "¡Exelente!"
+        "Â¡Muy bien!",
+        "Â¡Que Bien Bailas!",
+        "Â¡Guauu!",
+        "Â¡Exelente!"
     };
     public string[] posiblesMensajesIncorrectos = {
-        "¡Horrible!",
-        "¡Que MAL Bailas!",
-        "¡Das Asco!",
-        "¡Rindete!"
+        "Â¡Horrible!",
+        "Â¡Que MAL Bailas!",
+        "Â¡Das Asco!",
+        "Â¡Rindete!"
     };
 
     public float tiempoLimite = 2f;
@@ -35,16 +35,21 @@ public class DanceManager : MonoBehaviour
     public float maxX = 400f;
     public float minY = -200f;
     public float maxY = 200f;
+    private float Erroneas;
+
+    private bool puedeJugar = false;
+
 
     void Start()
     {
-        StartCoroutine(TimeToWin());
-        GenerarNuevaTecla();
+        StartCoroutine(InicioCuentaAtras());
         
     }
 
     void Update()
     {
+        if (!puedeJugar) return;
+
         timer -= Time.deltaTime;
 
         if (timer <= 0)
@@ -87,8 +92,9 @@ public class DanceManager : MonoBehaviour
 
     void Perder()
     {
-        
-        
+        StopAllCoroutines();
+        resultadoText.color = new Color32(255, 0, 0, 255);
+        resultadoText.text = "Â¡PERDISTE!ðŸ˜¥";
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 
@@ -104,21 +110,37 @@ public class DanceManager : MonoBehaviour
         int randomIndex = Random.Range(0, posiblesMensajesIncorrectos.Length);
         resultadoText.text = posiblesMensajesIncorrectos[randomIndex];
         resultadoText.color = new Color32(255, 0, 0, 255);
+        Erroneas++;
+        if (Erroneas >= 3) { 
+            Perder();
+        }
     }
-    IEnumerator TimeToWin()
+    IEnumerator InicioCuentaAtras()
     {
-        for (int i = timeToWin; i >= 0; i--)
+        for (int i = 3; i > 0; i--)
         {
-            yield return new WaitForSeconds(1);
             contadorTiempo.text = i.ToString();
-            
+            yield return new WaitForSeconds(1);
         }
 
-        contadorTiempo.text = "Ganaste";
+        contadorTiempo.text = "Â¡GO!";
+        
+        yield return new WaitForSeconds(1);
+
+        puedeJugar = true;
+        GenerarNuevaTecla();
+        for (int i = timeToWin; i > 0; i--)
+        {
+            contadorTiempo.text = i.ToString();
+            yield return new WaitForSeconds(1);
+        }
+        
+
         Win();
     }
     void Win()
     {
+        StopAllCoroutines();
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 }

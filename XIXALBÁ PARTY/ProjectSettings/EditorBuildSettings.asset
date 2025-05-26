@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minijuegos/MayaDance/MayaDance.unity
     guid: ade812a2292bbfb468a48f623e517fe7
+  - enabled: 1
+    path: Assets/Scenes/Minijuegos/Jaguar/JaguarMinijuego.unity
+    guid: b7e9e18ea6e6ce34eb21411b7145b945
   m_configObjects: {}
