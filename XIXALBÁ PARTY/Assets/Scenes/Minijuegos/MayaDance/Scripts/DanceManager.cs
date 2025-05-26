@@ -42,23 +42,22 @@ public class DanceManager : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
-        // Si pasa el tiempo, pierde
         if (timer <= 0)
         {
             ResultadoIncorrecto();
             GenerarNuevaTecla();
-            //Perder();
         }
 
-        // Si toca la tecla correcta
-        if (Input.anyKeyDown)
+        if (Input.inputString != "")
         {
-            if (Input.GetKeyDown(teclaActual.ToString().ToLower()))
+            char keyPressed = Input.inputString.ToLower()[0];
+
+            if (keyPressed == char.ToLower(teclaActual))
             {
                 ResultadoCorrecto();
                 GenerarNuevaTecla();
             }
-            else
+            else if ("qwerasdfw".Contains(keyPressed))
             {
                 ResultadoIncorrecto();
                 GenerarNuevaTecla();
