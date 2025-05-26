@@ -2,12 +2,15 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public class DanceManager : MonoBehaviour
 {
     public TextMeshProUGUI teclaText;
     public TextMeshProUGUI resultadoText;
-    
+    public TextMeshProUGUI contadorTiempo;
+    public int timeToWin;
+
     public RectTransform BgTeclaRect;
     public string[] posiblesMensajes = {
         "¡Muy bien!",
@@ -35,7 +38,9 @@ public class DanceManager : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(TimeToWin());
         GenerarNuevaTecla();
+        
     }
 
     void Update()
@@ -99,5 +104,21 @@ public class DanceManager : MonoBehaviour
         int randomIndex = Random.Range(0, posiblesMensajesIncorrectos.Length);
         resultadoText.text = posiblesMensajesIncorrectos[randomIndex];
         resultadoText.color = new Color32(255, 0, 0, 255);
+    }
+    IEnumerator TimeToWin()
+    {
+        for (int i = timeToWin; i >= 0; i--)
+        {
+            yield return new WaitForSeconds(1);
+            contadorTiempo.text = i.ToString();
+            
+        }
+
+        contadorTiempo.text = "Ganaste";
+        Win();
+    }
+    void Win()
+    {
+        GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 }

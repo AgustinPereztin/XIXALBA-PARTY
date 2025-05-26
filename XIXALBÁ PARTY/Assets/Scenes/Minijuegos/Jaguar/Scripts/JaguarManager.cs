@@ -85,7 +85,7 @@ public class JaguarManager : MonoBehaviour
 
     public void Win()
     {
-        //GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
+        GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 
     public void Die()
@@ -93,7 +93,7 @@ public class JaguarManager : MonoBehaviour
         StopAllCoroutines();
         lost = true;
         contador.text = "Perdiste";
-        //GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
+        GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
