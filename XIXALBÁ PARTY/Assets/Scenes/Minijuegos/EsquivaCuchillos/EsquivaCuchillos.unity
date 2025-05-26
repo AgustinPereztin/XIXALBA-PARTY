@@ -190,7 +190,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -321,6 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49790cdd15a9e6841bb98da48b61a46a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1938706162}
   knifePrefab: {fileID: 5499633248017288885, guid: 120a612e87420184286d1a550124cb13, type: 3}
   spawners:
   - {fileID: 2119013176}
@@ -974,7 +975,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 220, y: 422}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 389.5, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1652801432
 MonoBehaviour:
@@ -1030,7 +1031,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1059,7 +1060,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 147.87996, w: 0}
+  m_margin: {x: 0, y: 0, z: 150.1336, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1307,6 +1308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7.5
+  puedeMoverse: 1
 --- !u!50 &1938706163
 Rigidbody2D:
   serializedVersion: 4

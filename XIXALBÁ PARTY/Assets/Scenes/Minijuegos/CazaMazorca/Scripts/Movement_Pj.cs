@@ -6,6 +6,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f; // velocidad del personaje
+    internal bool puedeMoverse;
 
     void Update()
     {

@@ -6,6 +6,8 @@ public class PlayerMovementCuchillos : MonoBehaviour
 
     private float xLimit;
 
+    public bool puedeMoverse = true;
+
     void Start()
     {
         // Calcular el ancho visible de la cámara
@@ -17,6 +19,7 @@ public class PlayerMovementCuchillos : MonoBehaviour
 
     void Update()
     {
+        if (!puedeMoverse) return;
         float moveX = Input.GetAxisRaw("Horizontal");
         Vector3 position = transform.position;
         position.x += moveX * speed * Time.deltaTime;

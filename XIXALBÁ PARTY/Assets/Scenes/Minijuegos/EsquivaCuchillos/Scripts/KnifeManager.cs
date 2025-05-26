@@ -1,14 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro; // <--- ¡IMPORTANTE!
+using TMPro;
+using System.Collections; // <--- ¡IMPORTANTE!
 
 public class KnifeManager : MonoBehaviour
 {
+    public PlayerMovementCuchillos player; //referencio al player para parar sus movimiento
     public GameObject knifePrefab;
     public Transform[] spawners;
     public float spawnInterval = 0.3f;
-    public float gameDuration = 60f;
+    public int gameDuration;
 
     private float spawnTimer;
     private float gameTimer;
@@ -17,10 +19,12 @@ public class KnifeManager : MonoBehaviour
     public GameObject winText;
     public GameObject loseText;
 
+    private bool puedeJugar = false;
     private bool gameOver = false;
 
     void Start()
     {
+        StartCoroutine(InicioCuentaAtras());
         gameTimer = gameDuration;
         winText.SetActive(false);
         loseText.SetActive(false);
@@ -28,6 +32,7 @@ public class KnifeManager : MonoBehaviour
 
     void Update()
     {
+        if (!puedeJugar) return;
         if (gameOver) return;
 
         // Cronómetro
@@ -48,20 +53,45 @@ public class KnifeManager : MonoBehaviour
             spawnTimer = 0f;
         }
     }
+    IEnumerator InicioCuentaAtras()
+    {
+        for (int i = 3; i > 0; i--)
+        {
+            timerText.text = i.ToString();
+            yield return new WaitForSeconds(1);
+        }
+
+        timerText.text = "¡GO!";
+
+        yield return new WaitForSeconds(1);
+
+        puedeJugar = true;
+        
+        for (int i = gameDuration; i > 0; i--)
+        {
+            timerText.text = i.ToString();
+            yield return new WaitForSeconds(1);
+        }
+        GameWon();
+    }
 
     public void GameOver()
     {
+        player.puedeMoverse = false;
+        StopAllCoroutines();
         gameOver = true;
-        loseText.SetActive(true);
-        Invoke("RestartGame", 3f);
+        //loseText.SetActive(true);
+        //Invoke("RestartGame", 3f);
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 
     void GameWon()
     {
+        player.puedeMoverse = false;
+        StopAllCoroutines();
         gameOver = true;
-        winText.SetActive(true);
-        Invoke("RestartGame", 3f);
+        //winText.SetActive(true);
+        //Invoke("RestartGame", 3f);
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
 
     }

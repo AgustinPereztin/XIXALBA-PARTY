@@ -94,7 +94,7 @@ public class DanceManager : MonoBehaviour
     {
         StopAllCoroutines();
         resultadoText.color = new Color32(255, 0, 0, 255);
-        resultadoText.text = "¡PERDISTE!😥";
+        resultadoText.text = "¡PERDISTE!";
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 
