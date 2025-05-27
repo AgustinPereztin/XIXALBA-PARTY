@@ -10,11 +10,13 @@ public class ShinysPerdidas : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Si el objeto que toca tiene el tag "Player"
+        // Si el objeto que toca tiene el tag "Shiny"
         if (other.CompareTag("shiny"))
         {
+            
             GameManager.instance.PerderVida();
-           
+            
+
         }
     }
 }

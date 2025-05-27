@@ -10,11 +10,16 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI vidasText;
     public TextMeshProUGUI resultado;
     public int vidas = 3;
+    public PlayerMovementMazorca player;
+    
+
+
 
     public Spawner spawner;
 
     public float Mazorcas_A_Agarrar = 10;
     private float MazorcasAgarradas;
+
 
     void Awake()
     {
@@ -25,6 +30,7 @@ public class GameManager : MonoBehaviour
     {
         vidas--;
         vidasText.text = "Vidas: " + vidas;
+        player.RecibirDaño(); // << activa animación de daño
 
         if (vidas <= 0)
         {
@@ -45,4 +51,6 @@ public class GameManager : MonoBehaviour
             GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
         }
     }
+    
+
 }

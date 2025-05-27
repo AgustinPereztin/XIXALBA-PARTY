@@ -10,8 +10,10 @@ public class PodridaMazorca : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            
             Destroy(gameObject);
             GameManager.instance.PerderVida();
+            
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -9,15 +10,19 @@ public class Spawner : MonoBehaviour
     public float minX = -7f; // Límite izquierdo
     public float maxX = 7f;  // Límite derecho
     public float spawnY = 5f; // Altura donde aparecen
+    
 
     void Start()
     {
+        
         // Llama al método SpawnMazorca cada cierto tiempo
         InvokeRepeating("SpawnMazorca", 0f, spawnInterval);
     }
 
     void SpawnMazorca()
     {
+       
+
         // Posición aleatoria en X dentro del rango
         float randomX = Random.Range(minX, maxX);
         Vector3 spawnPosition = new Vector3(randomX, spawnY, 0f);
@@ -34,4 +39,5 @@ public class Spawner : MonoBehaviour
     {
         CancelInvoke("SpawnMazorca");
     }
+    
 }
