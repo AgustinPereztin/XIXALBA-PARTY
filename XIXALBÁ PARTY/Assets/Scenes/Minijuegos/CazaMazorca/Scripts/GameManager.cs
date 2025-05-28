@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     public float Mazorcas_A_Agarrar = 10;
     private float MazorcasAgarradas;
+    public AudioSource damageSound;
+    public AudioSource mazorcaSound;
 
 
     void Awake()
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
         vidas--;
         vidasText.text = "Vidas: " + vidas;
         player.RecibirDaño(); // << activa animación de daño
+        damageSound.Play();
 
         if (vidas <= 0)
         {
@@ -48,6 +51,9 @@ public class GameManager : MonoBehaviour
         if (alreadyLost)
             return;
         MazorcasAgarradas ++;
+
+        mazorcaSound.Play();
+
         if (MazorcasAgarradas == Mazorcas_A_Agarrar)
         {
             spawner.DetenerSpawns();
