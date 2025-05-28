@@ -25,13 +25,13 @@ public class Volumen : MonoBehaviour
     }
     public void RevisarSiEstoyMute()
     {
-        if (sliderValue == 0)
+        /*if (sliderValue == 0)
         {
             imagenMute.enabled = true;
         }
         else
         {
             imagenMute.enabled = false;
-        }
+        }*/
     }
 }

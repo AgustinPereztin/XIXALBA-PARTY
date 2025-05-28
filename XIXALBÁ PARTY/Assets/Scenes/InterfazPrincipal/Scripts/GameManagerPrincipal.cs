@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Collections;
 
 public class GameManagerPrincipal : MonoBehaviour
 {
@@ -30,21 +31,47 @@ public class GameManagerPrincipal : MonoBehaviour
 
     public void CargarMinijuegoAleatorio()
     {
+        StartCoroutine(TransicionDeLvl());
+    }
+
+    IEnumerator TransicionDeLvl()
+    {
         if (minijuegosPendientes.Count == 0)
         {
-            // Si se terminaron, volver al menú o reiniciar
-            SceneManager.LoadScene("MainMenu");
+            FindObjectOfType<TransicionCanvas>().EndLvl();
+            yield return new WaitForSeconds(0.75f);
+
+            var progress = SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single);
+
+            while (!progress.isDone)
+            {
+                yield return null;
+            }
             InicializarLista();
-            return;
+            Debug.Log("Level loaded");
         }
+        else
+        {
+            int randomIndex = Random.Range(0, minijuegosPendientes.Count);
+            string sceneName = minijuegosPendientes[randomIndex];
 
-        int randomIndex = Random.Range(0, minijuegosPendientes.Count);
-        string sceneName = minijuegosPendientes[randomIndex];
+            // Eliminar ese minijuego de la lista de pendientes
+            minijuegosPendientes.RemoveAt(randomIndex);
 
-        // Eliminar ese minijuego de la lista de pendientes
-        minijuegosPendientes.RemoveAt(randomIndex);
+            // Cargar minijuego
+            //SceneManager.LoadScene(sceneName);
 
-        // Cargar minijuego
-        SceneManager.LoadScene(sceneName);
+            FindObjectOfType<TransicionCanvas>().EndLvl();
+            yield return new WaitForSeconds(0.75f);
+
+            var progress = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+
+            while (!progress.isDone)
+            {
+                yield return null;
+            }
+
+            Debug.Log("Level loaded");
+        }
     }
 }

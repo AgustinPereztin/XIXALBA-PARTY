@@ -17,6 +17,7 @@ public class JumpMovement : MonoBehaviour
 
     public GameObject perdisteText;
 
+    bool alreadyLost;
 
     void Start()
     {
@@ -41,7 +42,9 @@ public class JumpMovement : MonoBehaviour
     }
     void Die()
     {
-
+        if (alreadyLost)
+            return;
+        alreadyLost = true;
         perdisteText.gameObject.SetActive(true);
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
 

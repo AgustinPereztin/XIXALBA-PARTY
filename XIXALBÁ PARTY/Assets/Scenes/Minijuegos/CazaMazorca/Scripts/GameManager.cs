@@ -11,9 +11,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI resultado;
     public int vidas = 3;
     public PlayerMovementMazorca player;
-    
 
 
+    public bool alreadyLost;
 
     public Spawner spawner;
 
@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
 
         if (vidas <= 0)
         {
+            if (alreadyLost)
+                return;
+            alreadyLost = true;
             spawner.DetenerSpawns();
             vidasText.text = "";
             resultado.text = "¡Perdiste!";
@@ -42,6 +45,8 @@ public class GameManager : MonoBehaviour
     }
     public void Ganar()
     {
+        if (alreadyLost)
+            return;
         MazorcasAgarradas ++;
         if (MazorcasAgarradas == Mazorcas_A_Agarrar)
         {

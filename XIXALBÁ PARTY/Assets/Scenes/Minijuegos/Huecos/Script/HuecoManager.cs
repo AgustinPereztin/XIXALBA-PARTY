@@ -21,8 +21,9 @@ public class HuecoManager : MonoBehaviour
 
     private int score = 0;
     private bool gameActive = false;
-    private bool[] holeOccupied; 
+    private bool[] holeOccupied;
 
+    bool alreadyLost;
     private void Start()
     {
         StartCoroutine(IntroSequence());
@@ -126,6 +127,9 @@ public class HuecoManager : MonoBehaviour
 
     void RestartGame()
     {
+        if (alreadyLost)
+            return;
+        alreadyLost = true;
         UnityEngine.SceneManagement.SceneManager.LoadScene(
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
         );

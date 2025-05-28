@@ -22,6 +22,8 @@ public class KnifeManager : MonoBehaviour
     private bool puedeJugar = false;
     private bool gameOver = false;
 
+    bool alreadyLost;
+
     void Start()
     {
         StartCoroutine(InicioCuentaAtras());
@@ -77,6 +79,9 @@ public class KnifeManager : MonoBehaviour
 
     public void GameOver()
     {
+        if (alreadyLost)
+            return;
+        alreadyLost = true;
         player.puedeMoverse = false;
         StopAllCoroutines();
         gameOver = true;

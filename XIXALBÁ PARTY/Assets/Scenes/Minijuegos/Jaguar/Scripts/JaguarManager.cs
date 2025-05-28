@@ -21,6 +21,7 @@ public class JaguarManager : MonoBehaviour
     public BoxCollider2D myCollider;
     private Rigidbody2D rb;
     private bool isGrounded;
+    bool alreadyLost;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -90,6 +91,9 @@ public class JaguarManager : MonoBehaviour
 
     public void Die()
     {
+        if (alreadyLost)
+            return;
+        alreadyLost = true;
         StopAllCoroutines();
         lost = true;
         contador.text = "Perdiste";

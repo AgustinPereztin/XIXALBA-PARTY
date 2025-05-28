@@ -10,6 +10,7 @@ public class DanceManager : MonoBehaviour
     public TextMeshProUGUI resultadoText;
     public TextMeshProUGUI contadorTiempo;
     public int timeToWin;
+    bool alreadyLost;
 
     public RectTransform BgTeclaRect;
     public string[] posiblesMensajes = {
@@ -92,6 +93,9 @@ public class DanceManager : MonoBehaviour
 
     void Perder()
     {
+        if (alreadyLost)
+            return;
+        alreadyLost = true;
         StopAllCoroutines();
         resultadoText.color = new Color32(255, 0, 0, 255);
         resultadoText.text = "¡PERDISTE!";
