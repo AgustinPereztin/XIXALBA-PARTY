@@ -7,6 +7,7 @@ public class PlayerMovementCuchillos : MonoBehaviour
     private float xLimit;
 
     public bool puedeMoverse = true;
+    public Animator PJanimacion;
 
     void Start()
     {
@@ -20,13 +21,16 @@ public class PlayerMovementCuchillos : MonoBehaviour
     void Update()
     {
         if (!puedeMoverse) return;
+
         float moveX = Input.GetAxisRaw("Horizontal");
+
+        // Movimiento
         Vector3 position = transform.position;
         position.x += moveX * speed * Time.deltaTime;
-
-        // Limitar la posición en X
         position.x = Mathf.Clamp(position.x, -xLimit, xLimit);
-
         transform.position = position;
+
+        // Animación
+        PJanimacion.SetFloat("moveX", moveX);
     }
-}
+    }

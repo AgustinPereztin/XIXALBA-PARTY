@@ -11,6 +11,7 @@ public class EquilibristaGameplay : MonoBehaviour
     public float speed = 5f, rotation = 20f; // velocidad de la mano
     public TextMeshProUGUI contador;
     bool started; //Indica cuando empieza el juego
+    public AudioSource plataforma;
 
     void Start()
     {
@@ -33,7 +34,7 @@ public class EquilibristaGameplay : MonoBehaviour
         mano.transform.position += move;
 
         mano.transform.position = new Vector2(Mathf.Clamp(mano.transform.position.x, - 6.85f, 6.85f), mano.transform.position.y);
-
+        plataforma.Play();
 
         //Mecanica del Balanceo
         totemRb.AddTorque(moveInput * rotation * Time.fixedDeltaTime);

@@ -15,7 +15,9 @@ public class JumpMovement : MonoBehaviour
 
     //La pantalla de perdiste 
 
-    public GameObject perdisteText;
+    public AudioSource JUMP;
+    public AudioSource punch;
+
 
     bool alreadyLost, started;
 
@@ -39,13 +41,17 @@ public class JumpMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+ 
+
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            JUMP.Play();
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Head"))
         {
+            punch.Play();
             Die();
         }
     }

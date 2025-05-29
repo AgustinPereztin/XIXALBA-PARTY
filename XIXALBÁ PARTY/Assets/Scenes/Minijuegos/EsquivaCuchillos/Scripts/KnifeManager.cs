@@ -18,6 +18,7 @@ public class KnifeManager : MonoBehaviour
     public TextMeshProUGUI timerText; // <--- CAMBIADO de Text a TextMeshProUGUI
     public GameObject winText;
     public GameObject loseText;
+    public AudioSource flechas;
 
     private bool puedeJugar = false;
     private bool gameOver = false;
@@ -53,7 +54,9 @@ public class KnifeManager : MonoBehaviour
             int index = Random.Range(0, spawners.Length);
             Instantiate(knifePrefab, spawners[index].position, Quaternion.identity);
             spawnTimer = 0f;
+            flechas.Play();
         }
+        
     }
     IEnumerator InicioCuentaAtras()
     {

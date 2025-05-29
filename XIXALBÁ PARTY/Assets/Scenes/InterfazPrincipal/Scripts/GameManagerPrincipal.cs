@@ -10,6 +10,7 @@ public class GameManagerPrincipal : MonoBehaviour
     public string[] minijuegoScenes;  // todas las scenes
     private List<string> minijuegosPendientes;
     public int minijuegosGanados = 0;
+    public AudioSource puertas;
     void Awake()
     {
         if (instance == null)
@@ -54,6 +55,7 @@ public class GameManagerPrincipal : MonoBehaviour
 
             // Transición
             FindObjectOfType<TransicionCanvas>().EndLvl();
+            
             yield return new WaitForSeconds(0.75f);
 
             // Cargar minijuego
