@@ -19,6 +19,8 @@ public class KnifeManager : MonoBehaviour
     public GameObject winText;
     public GameObject loseText;
     public AudioSource flechas;
+    public AudioSource damage;
+
 
     private bool puedeJugar = false;
     private bool gameOver = false;
@@ -82,14 +84,14 @@ public class KnifeManager : MonoBehaviour
 
     public void GameOver()
     {
+        
         if (alreadyLost)
             return;
         alreadyLost = true;
         player.puedeMoverse = false;
         StopAllCoroutines();
         gameOver = true;
-        //loseText.SetActive(true);
-        //Invoke("RestartGame", 3f);
+        damage.Play();
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 

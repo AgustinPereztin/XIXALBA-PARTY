@@ -22,6 +22,7 @@ public class JaguarManager : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     bool alreadyLost, started;
+    public AudioSource Roar;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -62,16 +63,34 @@ public class JaguarManager : MonoBehaviour
         yield return new WaitForSeconds(0.75f);
         started = true;
         yield return new WaitForSeconds(1);
+
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(minTime, maxTime));
+
             if (Random.Range(0, 2) == 0)
             {
-                Instantiate(jaguar, left.position, left.rotation).GetComponent<JaguarEnemy>().startLeft = true;
+                GameObject jaguarInstance = Instantiate(jaguar, left.position, left.rotation);
+                jaguarInstance.GetComponent<JaguarEnemy>().startLeft = true;
+                
+
+                // Asegurarse que mire hacia la derecha (scale.x positivo)
+                Vector3 scale = jaguarInstance.transform.localScale;
+                scale.x = Mathf.Abs(scale.x);
+                jaguarInstance.transform.localScale = scale;
+                yield return new WaitForSeconds(0.3f);
+                Roar.Play();
             }
             else
             {
-                Instantiate(jaguar, right.position, right.rotation);
+                GameObject jaguarInstance = Instantiate(jaguar, right.position, right.rotation);
+
+                // Asegurarse que mire hacia la izquierda (scale.x negativo)
+                Vector3 scale = jaguarInstance.transform.localScale;
+                scale.x = -Mathf.Abs(scale.x);
+                jaguarInstance.transform.localScale = scale;
+                yield return new WaitForSeconds(0.3f);
+                Roar.Play();
             }
         }
     }
@@ -85,6 +104,7 @@ public class JaguarManager : MonoBehaviour
         }
 
         contador.text = "Ganaste";
+        StopAllCoroutines();
         Win();
     }
 

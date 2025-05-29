@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Knife : MonoBehaviour
 {
+    
     void Update()
     {
         // Si cae muy abajo, lo destruimos para que no consuma memoria
@@ -15,8 +16,10 @@ public class Knife : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            
             // Llama al GameManager para terminar el juego
             FindObjectOfType<KnifeManager>().GameOver();
+
 
             // Destruye este cuchillo
             Destroy(gameObject);

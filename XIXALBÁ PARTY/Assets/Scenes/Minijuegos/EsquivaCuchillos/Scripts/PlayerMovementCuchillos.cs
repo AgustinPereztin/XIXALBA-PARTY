@@ -30,7 +30,21 @@ public class PlayerMovementCuchillos : MonoBehaviour
         position.x = Mathf.Clamp(position.x, -xLimit, xLimit);
         transform.position = position;
 
-        // Animación
-        PJanimacion.SetFloat("moveX", moveX);
+        // Animaciones con booleans
+        if (moveX > 0)
+        {
+            PJanimacion.SetBool("right", true);
+            PJanimacion.SetBool("left", false);
+        }
+        else if (moveX < 0)
+        {
+            PJanimacion.SetBool("right", false);
+            PJanimacion.SetBool("left", true);
+        }
+        else
+        {
+            PJanimacion.SetBool("right", false);
+            PJanimacion.SetBool("left", false);
+        }
     }
-    }
+}
