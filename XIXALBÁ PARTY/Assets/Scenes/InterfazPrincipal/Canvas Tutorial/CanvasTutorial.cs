@@ -8,7 +8,8 @@ public class CanvasTutorial : MonoBehaviour
     public GameObject tutorial;
     void Start()
     {
-        if(PlayerPrefs.GetInt("tutorial" + lvl, 0) == 0)
+        tutorial.SetActive(false);
+        if (PlayerPrefs.GetInt("tutorial" + lvl, 0) == 0)
         {
             PlayerPrefs.SetInt(("tutorial" + lvl), 1);
             StartCoroutine(ShowTutorial());
