@@ -12,7 +12,7 @@ public class HuecoManager : MonoBehaviour
     public GameObject losePanel;
     public GameObject winPanel;
     public TMP_Text scoreHueco;
-    public TMP_Text introHuecos;
+    //public TMP_Text introHuecos;
 
     public float minSpawnTime = 0.5f;
     public float maxSpawnTime = 1.5f;
@@ -31,7 +31,7 @@ public class HuecoManager : MonoBehaviour
 
     IEnumerator IntroSequence()
     {
-        introHuecos.gameObject.SetActive(true);
+        //introHuecos.gameObject.SetActive(true);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
         score = 0;
@@ -41,7 +41,7 @@ public class HuecoManager : MonoBehaviour
 
         yield return new WaitForSeconds(introDuration);
 
-        introHuecos.gameObject.SetActive(false);
+        //introHuecos.gameObject.SetActive(false);
         gameActive = true;
         StartCoroutine(SpawnRoutine());
     }

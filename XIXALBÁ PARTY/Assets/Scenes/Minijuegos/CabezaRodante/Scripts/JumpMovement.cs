@@ -1,34 +1,40 @@
-ï»¿using System.Collections;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class JumpMovement : MonoBehaviour
 {
-    public float jumpForce = 10f;
-    public Transform groundCheck;
+    public float jumpForce = 10f; //fuerza de salto (creo que 10 está bien)
+    public Transform groundCheck; 
     public float groundRadius = 0.2f;
-    public LayerMask whatIsGround;
+    public LayerMask whatIsGround; //todo esto pa chequear que esté en el piso
 
     private Rigidbody2D rb;
     private bool isGrounded;
 
-    public TextMeshProUGUI contador;
-    public HeadSpawner headSpawner;
-    public float spawnInterval = 2f;
+    //La pantalla de perdiste 
 
-    bool started;
+    public GameObject perdisteText;
+
+    bool alreadyLost, started;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(CuentaRegresiva());
+        StartCoroutine(InitialDelay());
+    }
+
+    IEnumerator InitialDelay()
+    {
+        yield return new WaitForSeconds(0.75f);
+        started = true;
     }
 
     void Update()
     {
         if (!started)
             return;
-
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -36,41 +42,6 @@ public class JumpMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
-
-    public IEnumerator CuentaRegresiva()
-    {
-        // Cuenta regresiva inicial
-        for (int i = 3; i > 0; i--)
-        {
-            contador.text = i.ToString();
-            yield return new WaitForSeconds(1);
-        }
-
-        contador.text = "Â¡GO!";
-        started = true;
-
-        // Iniciar spawneo repetido
-        InvokeRepeating(nameof(SpawnHead), 0f, spawnInterval);
-
-        // Cuenta regresiva de juego
-        for (int i = 10; i > -1; i--)
-        {
-            contador.text = i.ToString();
-            yield return new WaitForSeconds(1);
-        }
-
-        // Termina el juego
-        started = false;
-        CancelInvoke(nameof(SpawnHead));
-
-        Win();
-    }
-
-    void SpawnHead()
-    {
-        headSpawner.SpawnBall();
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Head"))
@@ -78,16 +49,14 @@ public class JumpMovement : MonoBehaviour
             Die();
         }
     }
-
     void Die()
     {
+        if (alreadyLost)
+            return;
+        alreadyLost = true;
+        perdisteText.gameObject.SetActive(true);
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
+
     }
 
-    public void Win()
-    {
-        contador.text = "Â¡Ganaste!";
-        GameManagerPrincipal.instance.SumarVictoria();
-        GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
-    }
 }

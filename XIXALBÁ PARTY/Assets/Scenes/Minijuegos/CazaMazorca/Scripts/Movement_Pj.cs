@@ -9,14 +9,22 @@ public class PlayerMovementMazorca : MonoBehaviour
     public float speed = 5f; // velocidad del personaje
     internal bool puedeMoverse = true;
     private Animator animator;
+    bool started;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        StartCoroutine(StartDelay());
+    }
+
+    IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(0.6f);
+        started = true;
     }
     void Update()
     {
-        if (!puedeMoverse) return;
+        if (!puedeMoverse || !started) return;
 
         float moveInput = Input.GetAxis("Horizontal");
 

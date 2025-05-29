@@ -29,6 +29,6 @@ public class Volumen : MonoBehaviour
 
     public void RevisarSiEstoyMute()
     {
-        imagenMute.enabled = (sliderValue <= 0.001f);
+        //imagenMute.enabled = (sliderValue <= 0.001f);
     }
 }

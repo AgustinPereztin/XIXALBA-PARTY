@@ -21,7 +21,7 @@ public class JaguarManager : MonoBehaviour
     public BoxCollider2D myCollider;
     private Rigidbody2D rb;
     private bool isGrounded;
-    bool alreadyLost;
+    bool alreadyLost, started;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -32,6 +32,8 @@ public class JaguarManager : MonoBehaviour
 
     void Update()
     {
+        if (!started)
+            return;
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -57,6 +59,8 @@ public class JaguarManager : MonoBehaviour
 
     IEnumerator JaguarSpawners()
     {
+        yield return new WaitForSeconds(0.75f);
+        started = true;
         yield return new WaitForSeconds(1);
         while (true)
         {
