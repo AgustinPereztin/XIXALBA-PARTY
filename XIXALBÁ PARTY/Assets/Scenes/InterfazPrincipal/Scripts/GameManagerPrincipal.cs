@@ -9,7 +9,7 @@ public class GameManagerPrincipal : MonoBehaviour
 
     public string[] minijuegoScenes;  // todas las scenes
     private List<string> minijuegosPendientes;
-
+    public int minijuegosGanados = 0;
     void Awake()
     {
         if (instance == null)
@@ -24,7 +24,7 @@ public class GameManagerPrincipal : MonoBehaviour
         }
     }
 
-    void InicializarLista()
+    public void InicializarLista()
     {
         minijuegosPendientes = new List<string>(minijuegoScenes);
     }
@@ -32,40 +32,32 @@ public class GameManagerPrincipal : MonoBehaviour
     public void CargarMinijuegoAleatorio()
     {
         StartCoroutine(TransicionDeLvl());
+        
+
     }
 
     IEnumerator TransicionDeLvl()
     {
         if (minijuegosPendientes.Count == 0)
         {
-            FindObjectOfType<TransicionCanvas>().EndLvl();
-            yield return new WaitForSeconds(0.75f);
-
-            var progress = SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single);
-
-            while (!progress.isDone)
-            {
-                yield return null;
-            }
-            InicializarLista();
-            Debug.Log("Level loaded");
+            // No quedan minijuegos
+            SceneManager.LoadScene("PuntajeFinal");
+            yield break;
         }
         else
         {
             int randomIndex = Random.Range(0, minijuegosPendientes.Count);
             string sceneName = minijuegosPendientes[randomIndex];
 
-            // Eliminar ese minijuego de la lista de pendientes
+            // Sacarlo de la lista antes de cargarlo, pero solo si hay más de uno después
             minijuegosPendientes.RemoveAt(randomIndex);
 
-            // Cargar minijuego
-            //SceneManager.LoadScene(sceneName);
-
+            // Transición
             FindObjectOfType<TransicionCanvas>().EndLvl();
             yield return new WaitForSeconds(0.75f);
 
+            // Cargar minijuego
             var progress = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
-
             while (!progress.isDone)
             {
                 yield return null;
@@ -73,5 +65,9 @@ public class GameManagerPrincipal : MonoBehaviour
 
             Debug.Log("Level loaded");
         }
+    }
+    public void SumarVictoria()
+    {
+        minijuegosGanados++;
     }
 }

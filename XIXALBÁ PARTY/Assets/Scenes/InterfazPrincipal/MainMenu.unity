@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d4acd7cd58d384db04127cfcbe0b3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  escalaHover: {x: 3, y: 3, z: 3}
+  escalaHover: {x: 3, y: 4, z: 3}
   velocidad: 5
 --- !u!1 &38138383
 GameObject:

@@ -97,6 +97,7 @@ public class KnifeManager : MonoBehaviour
         gameOver = true;
         //winText.SetActive(true);
         //Invoke("RestartGame", 3f);
+        GameManagerPrincipal.instance.SumarVictoria();
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
 
     }
