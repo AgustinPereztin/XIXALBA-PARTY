@@ -54,7 +54,7 @@ public class JumpMovement : MonoBehaviour
         if (alreadyLost)
             return;
         alreadyLost = true;
-        perdisteText.gameObject.SetActive(true);
+        //perdisteText.gameObject.SetActive(true);
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
 
     }
