@@ -32,11 +32,7 @@ public class GameManagerPrincipal : MonoBehaviour
     public void CargarMinijuegoAleatorio()
     {
         StartCoroutine(TransicionDeLvl());
-        if (minijuegosPendientes.Count == 0)
-        {
-            SceneManager.LoadScene("PuntajeFinal");
-            
-        }
+        
 
     }
 
