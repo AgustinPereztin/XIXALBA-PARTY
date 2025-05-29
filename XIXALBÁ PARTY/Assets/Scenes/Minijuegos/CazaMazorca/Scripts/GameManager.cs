@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     public AudioSource damageSound;
     public AudioSource mazorcaSound;
 
-
     void Awake()
     {
         instance = this;

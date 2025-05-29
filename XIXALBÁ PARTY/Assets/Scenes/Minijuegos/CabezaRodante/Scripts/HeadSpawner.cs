@@ -9,12 +9,16 @@ public class HeadSpawner : MonoBehaviour
     public float spawnInterval = 2f;
     public float minSpeed = 2f;
     public float maxSpeed = 5f;
-
     void Start()
     {
-        InvokeRepeating(nameof(SpawnBall), 1f, spawnInterval);
+        StartCoroutine(InitialDelay());
     }
 
+    IEnumerator InitialDelay()
+    {
+        yield return new WaitForSeconds(0.75f);
+        InvokeRepeating(nameof(SpawnBall), 1f, spawnInterval);
+    }
     void SpawnBall()
     {
         GameObject ball = Instantiate(ballPrefab, transform.position, Quaternion.identity);

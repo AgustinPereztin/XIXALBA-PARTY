@@ -17,15 +17,24 @@ public class JumpMovement : MonoBehaviour
 
     public GameObject perdisteText;
 
-    bool alreadyLost;
+    bool alreadyLost, started;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        StartCoroutine(InitialDelay());
+    }
+
+    IEnumerator InitialDelay()
+    {
+        yield return new WaitForSeconds(0.75f);
+        started = true;
     }
 
     void Update()
     {
+        if (!started)
+            return;
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
