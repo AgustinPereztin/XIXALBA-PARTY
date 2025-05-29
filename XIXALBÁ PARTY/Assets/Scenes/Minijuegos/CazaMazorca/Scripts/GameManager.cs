@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
             spawner.DetenerSpawns();
             vidasText.text = "";
             resultado.text = "¡Ganaste!";
+            GameManagerPrincipal.instance.SumarVictoria();
             GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
         }
     }

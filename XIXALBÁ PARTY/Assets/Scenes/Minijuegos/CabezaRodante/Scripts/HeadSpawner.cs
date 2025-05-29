@@ -10,12 +10,9 @@ public class HeadSpawner : MonoBehaviour
     public float minSpeed = 2f;
     public float maxSpeed = 5f;
 
-    void Start()
-    {
-        InvokeRepeating(nameof(SpawnBall), 1f, spawnInterval);
-    }
+    
 
-    void SpawnBall()
+    public void SpawnBall()
     {
         GameObject ball = Instantiate(ballPrefab, transform.position, Quaternion.identity);
         RollingHead rolling = ball.GetComponent<RollingHead>();

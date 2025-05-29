@@ -145,6 +145,7 @@ public class DanceManager : MonoBehaviour
     void Win()
     {
         StopAllCoroutines();
+        GameManagerPrincipal.instance.SumarVictoria();
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 }

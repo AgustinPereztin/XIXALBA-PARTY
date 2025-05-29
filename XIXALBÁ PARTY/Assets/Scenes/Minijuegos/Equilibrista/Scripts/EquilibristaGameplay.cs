@@ -78,6 +78,7 @@ public class EquilibristaGameplay : MonoBehaviour
     public void Win()
     {
         contador.text = "¡Ganaste!";
+        GameManagerPrincipal.instance.SumarVictoria();
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 }
