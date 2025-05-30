@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -12,17 +12,19 @@ public class JaguarManager : MonoBehaviour
     public float minTime, maxTime;
     public bool lost;
 
-    public float jumpForce = 10f; 
+    public float jumpForce = 10f;
     public Transform groundCheck;
     public float groundRadius = 0.2f;
     public LayerMask whatIsGround;
 
-    public GameObject standUpSprite, standDownSprite;
     public BoxCollider2D myCollider;
     private Rigidbody2D rb;
     private bool isGrounded;
     bool alreadyLost, started;
     public AudioSource Roar;
+
+    public Animator PJanimacion; // Animator asignado
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,26 +37,39 @@ public class JaguarManager : MonoBehaviour
     {
         if (!started)
             return;
+
+        // Chequear si está tocando el suelo
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 
+        // Salto
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            PJanimacion.SetBool("salto", true);
         }
 
+        // Animación de caída
+        PJanimacion.SetBool("caida", rb.velocity.y < -0.1f);
+
+        // Cuando está en el suelo, desactiva salto y caída
+        if (isGrounded && rb.velocity.y <= 0)
+        {
+            PJanimacion.SetBool("salto", false);
+            PJanimacion.SetBool("caida", false);
+        }
+
+        // Agacharse
         if (Input.GetKeyDown(KeyCode.S))
         {
             myCollider.size = new Vector2(1, 1);
             myCollider.offset = new Vector2(0, -0.5f);
-            standUpSprite.SetActive(false);
-            standDownSprite.SetActive(true);
+            PJanimacion.SetBool("agachar", true);
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
             myCollider.size = new Vector2(1, 2);
             myCollider.offset = new Vector2(0, 0);
-            standUpSprite.SetActive(true);
-            standDownSprite.SetActive(false);
+            PJanimacion.SetBool("agachar", false);
         }
     }
 
@@ -72,12 +87,11 @@ public class JaguarManager : MonoBehaviour
             {
                 GameObject jaguarInstance = Instantiate(jaguar, left.position, left.rotation);
                 jaguarInstance.GetComponent<JaguarEnemy>().startLeft = true;
-                
 
-                // Asegurarse que mire hacia la derecha (scale.x positivo)
                 Vector3 scale = jaguarInstance.transform.localScale;
                 scale.x = Mathf.Abs(scale.x);
                 jaguarInstance.transform.localScale = scale;
+
                 yield return new WaitForSeconds(0.3f);
                 Roar.Play();
             }
@@ -85,10 +99,10 @@ public class JaguarManager : MonoBehaviour
             {
                 GameObject jaguarInstance = Instantiate(jaguar, right.position, right.rotation);
 
-                // Asegurarse que mire hacia la izquierda (scale.x negativo)
                 Vector3 scale = jaguarInstance.transform.localScale;
                 scale.x = -Mathf.Abs(scale.x);
                 jaguarInstance.transform.localScale = scale;
+
                 yield return new WaitForSeconds(0.3f);
                 Roar.Play();
             }
@@ -97,7 +111,7 @@ public class JaguarManager : MonoBehaviour
 
     IEnumerator TimeToWin()
     {
-        for(int i = timeToWin; i >= 0; i--)
+        for (int i = timeToWin; i >= 0; i--)
         {
             contador.text = i.ToString();
             yield return new WaitForSeconds(1);
@@ -117,16 +131,21 @@ public class JaguarManager : MonoBehaviour
     {
         if (alreadyLost)
             return;
+
         alreadyLost = true;
         StopAllCoroutines();
         lost = true;
         contador.text = "Perdiste";
+        PJanimacion.SetBool("salto", false);
+        PJanimacion.SetBool("caida", false);
+        PJanimacion.SetBool("agachar", false);
+        PJanimacion.SetBool("muerte", true); // 👉 activar animación de muerte
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<JaguarEnemy>() != null)
+        if (collision.gameObject.GetComponent<JaguarEnemy>() != null)
         {
             Die();
         }

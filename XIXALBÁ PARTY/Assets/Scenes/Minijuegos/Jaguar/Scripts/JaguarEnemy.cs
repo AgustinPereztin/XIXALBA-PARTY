@@ -7,12 +7,7 @@ public class JaguarEnemy : MonoBehaviour
     public bool startLeft;
     public float speed, jumpForce, timeToJump;
     Rigidbody2D rb;
-    public AudioSource Roar;
-
-    public JaguarEnemy(AudioSource roar)
-    {
-        Roar = roar;
-    }
+    
 
     void Start()
     {
@@ -46,6 +41,6 @@ public class JaguarEnemy : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToJump);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        Roar.Play();
+        
     }
 }
