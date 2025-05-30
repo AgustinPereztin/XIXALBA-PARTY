@@ -22,15 +22,19 @@ public class JaguarManager : MonoBehaviour
     private bool isGrounded;
     bool alreadyLost, started;
     public AudioSource Roar;
-
+    public AudioSource jump;
+    public AudioSource punch;
+    public AudioSource music;
     public Animator PJanimacion; // Animator asignado
 
     void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<BoxCollider2D>();
         StartCoroutine(JaguarSpawners());
         StartCoroutine(TimeToWin());
+        music.Play();
     }
 
     void Update()
@@ -46,6 +50,7 @@ public class JaguarManager : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             PJanimacion.SetBool("salto", true);
+            jump.Play();
         }
 
         // Animación de caída
@@ -117,7 +122,7 @@ public class JaguarManager : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
-        contador.text = "Ganaste";
+        contador.text = "0";
         StopAllCoroutines();
         Win();
     }
@@ -135,7 +140,7 @@ public class JaguarManager : MonoBehaviour
         alreadyLost = true;
         StopAllCoroutines();
         lost = true;
-        contador.text = "Perdiste";
+        
         PJanimacion.SetBool("salto", false);
         PJanimacion.SetBool("caida", false);
         PJanimacion.SetBool("agachar", false);
@@ -147,6 +152,7 @@ public class JaguarManager : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<JaguarEnemy>() != null)
         {
+            punch.Play();
             Die();
         }
     }

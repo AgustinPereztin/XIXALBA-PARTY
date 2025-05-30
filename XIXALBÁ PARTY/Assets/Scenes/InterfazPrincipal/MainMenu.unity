@@ -1244,7 +1244,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "XIBALB\xC1 PARTY"
+  m_text: RITOS Y RETOS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -4100,6 +4100,7 @@ MonoBehaviour:
   - JaguarMinijuego
   minijuegosGanados: 0
   puertas: {fileID: 1103986960}
+  musicaMinijuegos: {fileID: 0}
 --- !u!4 &1898373319
 Transform:
   m_ObjectHideFlags: 0
@@ -4301,7 +4302,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 511, y: 166}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 278.53, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2082784758
 MonoBehaviour:
@@ -4323,9 +4324,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Born To Die
-
-'
+  m_text: Preparate para Morir
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}

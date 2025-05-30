@@ -16,8 +16,7 @@ public class KnifeManager : MonoBehaviour
     private float gameTimer;
 
     public TextMeshProUGUI timerText; // <--- CAMBIADO de Text a TextMeshProUGUI
-    public GameObject winText;
-    public GameObject loseText;
+   
     public AudioSource flechas;
     public AudioSource damage;
 
@@ -31,8 +30,7 @@ public class KnifeManager : MonoBehaviour
     {
         StartCoroutine(InicioCuentaAtras());
         gameTimer = gameDuration;
-        winText.SetActive(false);
-        loseText.SetActive(false);
+        
     }
 
     void Update()
@@ -68,7 +66,7 @@ public class KnifeManager : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
-        timerText.text = "¡GO!";
+        timerText.text = "GO";
 
         yield return new WaitForSeconds(1);
 

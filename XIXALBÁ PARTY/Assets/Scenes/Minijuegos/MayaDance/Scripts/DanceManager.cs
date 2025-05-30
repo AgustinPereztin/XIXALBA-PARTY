@@ -6,6 +6,9 @@ using System.Collections;
 
 public class DanceManager : MonoBehaviour
 {
+    public AudioSource music;
+    public AudioSource wrong;
+    public GameObject[] spritesDeBaile;
     public TextMeshProUGUI teclaText;
     public TextMeshProUGUI resultadoText;
     public TextMeshProUGUI contadorTiempo;
@@ -32,8 +35,12 @@ public class DanceManager : MonoBehaviour
     private float timer;
 
     public RectTransform textoRect;
-    public float minX = -400f;
-    public float maxX = 400f;
+    public float minX1 = -400f;
+    public float maxX1 = -100f;
+
+    public float minX2 = 100f;
+    public float maxX2 = 400f;
+
     public float minY = -200f;
     public float maxY = 200f;
     private float Erroneas;
@@ -43,8 +50,10 @@ public class DanceManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(InicioCuentaAtras());
         
+        StartCoroutine(InicioCuentaAtras());
+        music.Play();
+
     }
 
     void Update()
@@ -74,6 +83,10 @@ public class DanceManager : MonoBehaviour
                 GenerarNuevaTecla();
             }
         }
+        if (Erroneas >= 3)
+        {
+            Perder();
+        }
     }
 
     void GenerarNuevaTecla()
@@ -85,9 +98,21 @@ public class DanceManager : MonoBehaviour
         teclaText.text = teclaActual.ToString();
         timer = tiempoLimite;
 
-        float randomX = Random.Range(minX, maxX);
+        // Elegimos aleatoriamente uno de los dos intervalos para X
+        int intervaloElegido = Random.Range(0, 2);
+        float randomX;
+
+        if (intervaloElegido == 0)
+        {
+            randomX = Random.Range(minX1, maxX1);
+        }
+        else
+        {
+            randomX = Random.Range(minX2, maxX2);
+        }
+
         float randomY = Random.Range(minY, maxY);
-        
+
         BgTeclaRect.anchoredPosition = new Vector2(randomX, randomY);
     }
 
@@ -98,26 +123,29 @@ public class DanceManager : MonoBehaviour
         alreadyLost = true;
         StopAllCoroutines();
         resultadoText.color = new Color32(255, 0, 0, 255);
-        resultadoText.text = "¡PERDISTE!";
+        
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 
-    void ResultadoCorrecto() {
-
+    void ResultadoCorrecto()
+    {
         int randomIndex = Random.Range(0, posiblesMensajes.Length);
         resultadoText.text = posiblesMensajes[randomIndex];
         resultadoText.color = Color.green;
+        MostrarSpriteRandom();
     }
-    void ResultadoIncorrecto()
-    {
 
+    public void ResultadoIncorrecto()
+    {
         int randomIndex = Random.Range(0, posiblesMensajesIncorrectos.Length);
         resultadoText.text = posiblesMensajesIncorrectos[randomIndex];
         resultadoText.color = new Color32(255, 0, 0, 255);
         Erroneas++;
-        if (Erroneas >= 3) { 
-            Perder();
-        }
+        
+        
+        
+        wrong.Play();
+        MostrarSpriteRandom();
     }
     IEnumerator InicioCuentaAtras()
     {
@@ -127,7 +155,7 @@ public class DanceManager : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
-        contadorTiempo.text = "¡GO!";
+        contadorTiempo.text = "GO";
         
         yield return new WaitForSeconds(1);
 
@@ -141,6 +169,17 @@ public class DanceManager : MonoBehaviour
         
 
         Win();
+    }
+
+    void MostrarSpriteRandom()
+    {
+        foreach (GameObject sprite in spritesDeBaile)
+        {
+            sprite.SetActive(false);
+        }
+
+        int randomIndex = Random.Range(0, spritesDeBaile.Length);
+        spritesDeBaile[randomIndex].SetActive(true);
     }
     void Win()
     {

@@ -11,9 +11,10 @@ public class EquilibristaGameplay : MonoBehaviour
     public float speed = 5f, rotation = 20f; // velocidad de la mano
     public TextMeshProUGUI contador;
     bool started; //Indica cuando empieza el juego
-
+    public AudioSource music;
     void Start()
     {
+        music.Play();
         StartCoroutine(CuentaRegresiva());
         totemRb = totem.GetComponent<Rigidbody2D>();
     }
@@ -48,7 +49,7 @@ public class EquilibristaGameplay : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
-        contador.text = "¡GO!";
+        contador.text = "GO";
         //Empieza el juego
         started = true;
 

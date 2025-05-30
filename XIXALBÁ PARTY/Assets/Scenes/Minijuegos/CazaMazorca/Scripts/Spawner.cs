@@ -5,15 +5,22 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject[] mazorcaPrefabs;  // array de Prefab de la mazorca
-    public float spawnInterval = 1.5f; // Tiempo entre spawns
-    public float minX = -7f; // Límite izquierdo
-    public float maxX = 7f;  // Límite derecho
-    public float spawnY = 5f; // Altura donde aparecen
+    public GameObject[] mazorcaPrefabs;
+
+    public float spawnInterval = 1.5f;
+
+    public float minX1 = -4f;
+    public float maxX1 = 1f;
+
+    public float minX2 = 1f;
+    public float maxX2 = 3f;
+
+    public float spawnY = 5f;
+    public GameObject sombraPrefab;
+    public float sombraY = -3.5f; // altura del suelo donde aparece la sombra
 
     void Start()
     {
-        // Llama al método SpawnMazorca cada cierto tiempo
         StartCoroutine(StartDelay());
     }
 
@@ -25,21 +32,33 @@ public class Spawner : MonoBehaviour
 
     void SpawnMazorca()
     {
-        // Posición aleatoria en X dentro del rango
-        float randomX = Random.Range(minX, maxX);
+        int intervaloElegido = Random.Range(0, 2);
+        float randomX;
+
+        if (intervaloElegido == 0)
+        {
+            randomX = Random.Range(minX1, maxX1);
+        }
+        else
+        {
+            randomX = Random.Range(minX2, maxX2);
+        }
+
         Vector3 spawnPosition = new Vector3(randomX, spawnY, 0f);
 
-        // Elige aleatoriamente una mazorca del array
         int randomIndex = Random.Range(0, mazorcaPrefabs.Length);
         GameObject mazorcaSeleccionada = mazorcaPrefabs[randomIndex];
 
-        // Instancia la mazorca
+        // Instanciar mazorca
         Instantiate(mazorcaSeleccionada, spawnPosition, Quaternion.identity);
 
+        // Instanciar sombra
+        Vector3 sombraPosition = new Vector3(randomX, sombraY, 0f);
+        Instantiate(sombraPrefab, sombraPosition, Quaternion.identity, transform).GetComponent<DestroyAfterTime>().SetTimer(1f);
     }
+
     public void DetenerSpawns()
     {
         CancelInvoke("SpawnMazorca");
     }
-    
 }

@@ -3,29 +3,36 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class JumpMovement : MonoBehaviour
+public class ManagerRodantesYJump : MonoBehaviour
 {
-    public float jumpForce = 10f; //fuerza de salto (creo que 10 está bien)
-    public Transform groundCheck; 
+    // Timer y UI
+    public float gameTimer;
+    public TextMeshProUGUI timerText;
+
+    // Salto y movimiento
+    public float jumpForce = 10f;
+    public Transform groundCheck;
     public float groundRadius = 0.2f;
-    public LayerMask whatIsGround; //todo esto pa chequear que esté en el piso
+    public LayerMask whatIsGround;
 
     private Rigidbody2D rb;
     private bool isGrounded;
 
-    //La pantalla de perdiste 
-
+    // Sonidos
+    public AudioSource music;
     public AudioSource JUMP;
     public AudioSource punch;
+
+    // Animación
     public Animator PJanimacion;
-    
 
-
-    bool alreadyLost, started;
+    // Control de estados
+    private bool alreadyLost, started, juegoTerminado;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        music.Play();
         StartCoroutine(InitialDelay());
     }
 
@@ -37,8 +44,19 @@ public class JumpMovement : MonoBehaviour
 
     void Update()
     {
-        if (!started)
+        if (!started || juegoTerminado)
             return;
+
+        // Actualizar timer
+        gameTimer -= Time.deltaTime;
+        timerText.text = Mathf.CeilToInt(gameTimer).ToString();
+
+        if (gameTimer <= 0f)
+        {
+            GameWon();
+        }
+
+        // Control de salto
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -46,19 +64,15 @@ public class JumpMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             JUMP.Play();
             PJanimacion.SetBool("salto", true);
-            
-
         }
-        
+
         if (isGrounded && rb.velocity.y <= 0)
         {
             PJanimacion.SetBool("salto", false);
             PJanimacion.SetBool("caida", false);
         }
-        
-        
     }
-    
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Head"))
@@ -68,17 +82,23 @@ public class JumpMovement : MonoBehaviour
         }
     }
 
-    
-
     void Die()
     {
         if (alreadyLost)
             return;
-        alreadyLost = true;
-        PJanimacion.SetBool("muerte", true);
-        //perdisteText.gameObject.SetActive(true);
-        GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
 
+        alreadyLost = true;
+        juegoTerminado = true;
+
+        PJanimacion.SetBool("muerte", true);
+        GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 
+    void GameWon()
+    {
+        juegoTerminado = true;
+        StopAllCoroutines();
+        GameManagerPrincipal.instance.SumarVictoria();
+        GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
+    }
 }

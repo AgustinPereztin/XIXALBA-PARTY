@@ -7,10 +7,13 @@ public class GameManagerPrincipal : MonoBehaviour
 {
     public static GameManagerPrincipal instance;
 
-    public string[] minijuegoScenes;  // todas las scenes
+    public string[] minijuegoScenes;  // todas las scenes de minijuegos
     private List<string> minijuegosPendientes;
     public int minijuegosGanados = 0;
+
     public AudioSource puertas;
+    public AudioSource musicaMinijuegos;
+
     void Awake()
     {
         if (instance == null)
@@ -24,7 +27,6 @@ public class GameManagerPrincipal : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     public void InicializarLista()
     {
         minijuegosPendientes = new List<string>(minijuegoScenes);
@@ -33,15 +35,53 @@ public class GameManagerPrincipal : MonoBehaviour
     public void CargarMinijuegoAleatorio()
     {
         StartCoroutine(TransicionDeLvl());
-        
-
     }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "PuntajeFinal")
+        {
+            if (musicaMinijuegos.isPlaying)
+            {
+                musicaMinijuegos.Pause();
+            }
+        }
+        else if (EsMinijuego(scene.name))
+        {
+            if (!musicaMinijuegos.isPlaying)
+            {
+                musicaMinijuegos.Play();
+            }
+        }
+    }
+
+    bool EsMinijuego(string sceneName)
+    {
+        foreach (string minijuego in minijuegoScenes)
+        {
+            if (sceneName == minijuego)
+                return true;
+        }
+        return false;
+    }
+
+    
 
     IEnumerator TransicionDeLvl()
     {
         if (minijuegosPendientes.Count == 0)
         {
-            // No quedan minijuegos
+            // No quedan minijuegos, ir a puntaje final
             SceneManager.LoadScene("PuntajeFinal");
             yield break;
         }
@@ -50,12 +90,11 @@ public class GameManagerPrincipal : MonoBehaviour
             int randomIndex = Random.Range(0, minijuegosPendientes.Count);
             string sceneName = minijuegosPendientes[randomIndex];
 
-            // Sacarlo de la lista antes de cargarlo, pero solo si hay más de uno después
+            // Sacarlo de la lista
             minijuegosPendientes.RemoveAt(randomIndex);
 
-            // Transición
+            // Transición de nivel
             FindObjectOfType<TransicionCanvas>().EndLvl();
-            
             yield return new WaitForSeconds(0.75f);
 
             // Cargar minijuego
@@ -68,6 +107,7 @@ public class GameManagerPrincipal : MonoBehaviour
             Debug.Log("Level loaded");
         }
     }
+
     public void SumarVictoria()
     {
         minijuegosGanados++;

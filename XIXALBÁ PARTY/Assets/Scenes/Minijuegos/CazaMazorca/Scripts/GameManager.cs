@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -21,7 +21,13 @@ public class GameManager : MonoBehaviour
     private float MazorcasAgarradas;
     public AudioSource damageSound;
     public AudioSource mazorcaSound;
+    public AudioSource music;
 
+    private void Start()
+    {
+
+        music.Play();       
+    }
     void Awake()
     {
         instance = this;
@@ -30,8 +36,8 @@ public class GameManager : MonoBehaviour
     public void PerderVida()
     {
         vidas--;
-        vidasText.text = "Vidas: " + vidas;
-        player.RecibirDaño(); // << activa animación de daño
+        vidasText.text = "â™¥ " + vidas;
+        player.RecibirDaÃ±o(); // << activa animaciÃ³n de daÃ±o
         damageSound.Play();
 
         if (vidas <= 0)
@@ -41,7 +47,7 @@ public class GameManager : MonoBehaviour
             alreadyLost = true;
             spawner.DetenerSpawns();
             vidasText.text = "";
-            resultado.text = "¡Perdiste!";
+            resultado.text = "Â¡Perdiste!";
             GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
         }
     }
@@ -57,7 +63,7 @@ public class GameManager : MonoBehaviour
         {
             spawner.DetenerSpawns();
             vidasText.text = "";
-            resultado.text = "¡Ganaste!";
+            resultado.text = "Â¡Ganaste!";
             GameManagerPrincipal.instance.SumarVictoria();
             GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
         }
