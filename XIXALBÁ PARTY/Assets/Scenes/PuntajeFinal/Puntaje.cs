@@ -17,8 +17,7 @@ public class FinalScoreManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Reiniciar lista y volver al menú
-            GameManagerPrincipal.instance.InicializarLista();
+            GameManagerPrincipal.instance.ReiniciarJuego();
             SceneManager.LoadScene("MainMenu");
         }
     }

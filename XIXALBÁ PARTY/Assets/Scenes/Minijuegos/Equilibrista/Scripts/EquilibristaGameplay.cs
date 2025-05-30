@@ -72,13 +72,11 @@ public class EquilibristaGameplay : MonoBehaviour
         if (!started)
             return;
         StopAllCoroutines();
-        contador.text = "¡Perdiste!";
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }
 
     public void Win()
     {
-        contador.text = "¡Ganaste!";
         GameManagerPrincipal.instance.SumarVictoria();
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
     }

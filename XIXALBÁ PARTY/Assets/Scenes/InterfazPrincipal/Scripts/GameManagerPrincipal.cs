@@ -112,4 +112,9 @@ public class GameManagerPrincipal : MonoBehaviour
     {
         minijuegosGanados++;
     }
+    public void ReiniciarJuego()
+    {
+        minijuegosGanados = 0;
+        InicializarLista();
+    }
 }
