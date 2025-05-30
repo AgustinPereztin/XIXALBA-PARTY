@@ -265,7 +265,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1.2, y: 1.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1062,8 +1062,8 @@ Transform:
   m_GameObject: {fileID: 1388775990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.57, z: 0}
-  m_LocalScale: {x: 2.7118125, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -3.073, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1175595291}
@@ -1109,12 +1109,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ed2088a517f924f429f31364a37291c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 6.4, y: 4.266667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1361,9 +1361,8 @@ MonoBehaviour:
   totem: {fileID: 469103051}
   totemRb: {fileID: 469103053}
   speed: 5
-  rotation: 1000000
+  rotation: 300
   contador: {fileID: 2067674905}
-  plataforma: {fileID: 0}
 --- !u!1 &2067674903
 GameObject:
   m_ObjectHideFlags: 0
