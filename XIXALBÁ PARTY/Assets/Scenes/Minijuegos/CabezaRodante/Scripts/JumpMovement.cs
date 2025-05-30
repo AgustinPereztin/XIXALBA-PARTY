@@ -17,6 +17,7 @@ public class JumpMovement : MonoBehaviour
 
     public AudioSource JUMP;
     public AudioSource punch;
+    public Animator PJanimacion;
 
 
     bool alreadyLost, started;
@@ -38,15 +39,24 @@ public class JumpMovement : MonoBehaviour
         if (!started)
             return;
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+       
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
- 
-
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             JUMP.Play();
+            PJanimacion.SetBool("salto", true);
+            
+
+        }
+        
+        if (isGrounded && rb.velocity.y <= 0)
+        {
+            PJanimacion.SetBool("salto", false);
+            PJanimacion.SetBool("caida", false);
         }
     }
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Head"))
@@ -60,6 +70,7 @@ public class JumpMovement : MonoBehaviour
         if (alreadyLost)
             return;
         alreadyLost = true;
+        PJanimacion.SetBool("muerte", true);
         //perdisteText.gameObject.SetActive(true);
         GameManagerPrincipal.instance.CargarMinijuegoAleatorio();
 

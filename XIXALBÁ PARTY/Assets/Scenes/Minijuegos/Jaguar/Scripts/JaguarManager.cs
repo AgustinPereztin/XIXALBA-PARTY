@@ -61,13 +61,13 @@ public class JaguarManager : MonoBehaviour
         // Agacharse
         if (Input.GetKeyDown(KeyCode.S))
         {
-            myCollider.size = new Vector2(1, 1);
-            myCollider.offset = new Vector2(0, -0.5f);
+
+            myCollider.offset = new Vector2(0, 0.5f);
             PJanimacion.SetBool("agachar", true);
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
-            myCollider.size = new Vector2(1, 2);
+
             myCollider.offset = new Vector2(0, 0);
             PJanimacion.SetBool("agachar", false);
         }

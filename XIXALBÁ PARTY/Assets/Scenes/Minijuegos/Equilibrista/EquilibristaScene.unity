@@ -1361,7 +1361,7 @@ MonoBehaviour:
   totem: {fileID: 469103051}
   totemRb: {fileID: 469103053}
   speed: 5
-  rotation: 350
+  rotation: 1000000
   contador: {fileID: 2067674905}
   plataforma: {fileID: 0}
 --- !u!1 &2067674903

@@ -631,6 +631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textoPuntaje: {fileID: 196262635}
+  victoria: {fileID: 1398770371}
 --- !u!1 &1034639900
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,7 +728,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 117550520424939396, guid: 04e0c77c6df4b224eae8d529844eed85, type: 2}
   m_audioClip: {fileID: 8300000, guid: ccf2652076e9e3041827fa33074e093c, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.904
   m_Pitch: 1
   Loop: 0

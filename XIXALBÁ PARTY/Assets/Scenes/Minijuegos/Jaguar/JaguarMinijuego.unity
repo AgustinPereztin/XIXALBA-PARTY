@@ -634,7 +634,6 @@ GameObject:
   - component: {fileID: 1455385439}
   - component: {fileID: 1455385438}
   - component: {fileID: 1455385441}
-  - component: {fileID: 1455385443}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -651,7 +650,7 @@ Transform:
   m_GameObject: {fileID: 1455385435}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.376, z: 0}
+  m_LocalPosition: {x: 0, y: -2.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -717,18 +716,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.051419556, y: -0.11630225}
+  m_Offset: {x: 0.051419556, y: -0.19628584}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.1666667, y: 2.1666667}
+    oldSize: {x: 3.25, y: 3.25}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.72486126, y: 1.7673955}
+  m_Size: {x: 0.72486126, y: 2.5753982}
   m_EdgeRadius: 0
 --- !u!114 &1455385440
 MonoBehaviour:
@@ -746,18 +745,16 @@ MonoBehaviour:
   jaguar: {fileID: 8676660120600431155, guid: 7a16678da0cce2540a259caf536b802e, type: 3}
   left: {fileID: 919269226}
   right: {fileID: 1550608062}
-  timeToWin: 10
+  timeToWin: 15
   minTime: 1.5
   maxTime: 2
   lost: 0
-  jumpForce: 17
+  jumpForce: 20
   groundCheck: {fileID: 1728705874}
   groundRadius: 0.2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  standUpSprite: {fileID: 1455385435}
-  standDownSprite: {fileID: 0}
   myCollider: {fileID: 1455385439}
   Roar: {fileID: 219820933}
   PJanimacion: {fileID: 1455385441}
@@ -834,37 +831,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1455385443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455385435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 963b0580629c683479fb4245a16623c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contador: {fileID: 0}
-  jaguar: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
-  timeToWin: 0
-  minTime: 0
-  maxTime: 0
-  lost: 0
-  jumpForce: 10
-  groundCheck: {fileID: 0}
-  groundRadius: 0.2
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 0
-  standUpSprite: {fileID: 0}
-  standDownSprite: {fileID: 0}
-  myCollider: {fileID: 0}
-  Roar: {fileID: 0}
-  PJanimacion: {fileID: 0}
 --- !u!1 &1550608061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,7 +1017,7 @@ Transform:
   m_GameObject: {fileID: 1728705873}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -1.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
