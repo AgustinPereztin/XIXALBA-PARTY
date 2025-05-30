@@ -9,10 +9,12 @@ public class JaguarEnemy : MonoBehaviour
     Rigidbody2D rb;
     
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        if(Random.Range(0,2) == 0)
+        
+        if (Random.Range(0,2) == 0)
         {
             StartCoroutine(TimeToJump());
         }
