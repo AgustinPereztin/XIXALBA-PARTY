@@ -965,6 +965,10 @@ MonoBehaviour:
   punch: {fileID: 1813202591}
   music: {fileID: 553557730}
   PJanimacion: {fileID: 1455385441}
+  normalSizeY: 3.4
+  crouchSizeY: 1
+  normalOffsetY: 0
+  crouchOffsetY: -0.5
 --- !u!95 &1455385441
 Animator:
   serializedVersion: 5

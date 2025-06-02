@@ -966,52 +966,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &1223417459
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1223417460}
-  - component: {fileID: 1223417461}
-  m_Layer: 0
-  m_Name: Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1223417460
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223417459}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 955, y: 897, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1223417461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223417459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da1a02db3abb5ec4181a84f6166e33dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameTimer: 15
-  timerText: {fileID: 1318154912}
 --- !u!1 &1318154910
 GameObject:
   m_ObjectHideFlags: 0
@@ -2041,7 +1995,7 @@ MonoBehaviour:
   ballPrefab: {fileID: 2213902522589884930, guid: 0d8768aaf4e9948489777cdabe03fdeb, type: 3}
   player: {fileID: 1073737061}
   spawnInterval: 2.2
-  minSpeed: 6
+  minSpeed: 7
   maxSpeed: 12
 --- !u!1 &1964306060
 GameObject:
@@ -2214,4 +2168,3 @@ SceneRoots:
   - {fileID: 1571609796}
   - {fileID: 1489084437}
   - {fileID: 2084582760}
-  - {fileID: 1223417460}

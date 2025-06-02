@@ -2,7 +2,7 @@
 - Project name: XIXALBÁ PARTY
 - Unity version: Unity 2022.3.6f1
 - Active game object:
-  - Name: Environment
+  - Name: Player
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

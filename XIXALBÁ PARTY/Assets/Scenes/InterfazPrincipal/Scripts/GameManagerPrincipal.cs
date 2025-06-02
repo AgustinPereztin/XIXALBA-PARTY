@@ -12,7 +12,7 @@ public class GameManagerPrincipal : MonoBehaviour
     public int minijuegosGanados = 0;
 
     public AudioSource puertas;
-    public AudioSource musicaMinijuegos;
+    
 
     void Awake()
     {
@@ -37,43 +37,7 @@ public class GameManagerPrincipal : MonoBehaviour
         StartCoroutine(TransicionDeLvl());
     }
 
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.name == "PuntajeFinal")
-        {
-            if (musicaMinijuegos.isPlaying)
-            {
-                musicaMinijuegos.Pause();
-            }
-        }
-        else if (EsMinijuego(scene.name))
-        {
-            if (!musicaMinijuegos.isPlaying)
-            {
-                musicaMinijuegos.Play();
-            }
-        }
-    }
-
-    bool EsMinijuego(string sceneName)
-    {
-        foreach (string minijuego in minijuegoScenes)
-        {
-            if (sceneName == minijuego)
-                return true;
-        }
-        return false;
-    }
+   
 
     
 
