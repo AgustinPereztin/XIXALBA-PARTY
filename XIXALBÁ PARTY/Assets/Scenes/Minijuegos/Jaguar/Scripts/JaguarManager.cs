@@ -26,6 +26,11 @@ public class JaguarManager : MonoBehaviour
     public AudioSource punch;
     public AudioSource music;
     public Animator PJanimacion; // Animator asignado
+    public float normalSizeY = 4f;
+    public float crouchSizeY = 1f;
+
+    public float normalOffsetY = 0f;
+    public float crouchOffsetY = -0.5f;
 
     void Start()
     {
@@ -66,14 +71,14 @@ public class JaguarManager : MonoBehaviour
         // Agacharse
         if (Input.GetKeyDown(KeyCode.S))
         {
-
-            myCollider.offset = new Vector2(0, 0.5f);
+            myCollider.size = new Vector2(myCollider.size.x, crouchSizeY);
+            myCollider.offset = new Vector2(myCollider.offset.x, crouchOffsetY);
             PJanimacion.SetBool("agachar", true);
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
-
-            myCollider.offset = new Vector2(0, 0);
+            myCollider.size = new Vector2(myCollider.size.x, normalSizeY);
+            myCollider.offset = new Vector2(myCollider.offset.x, normalOffsetY);
             PJanimacion.SetBool("agachar", false);
         }
     }
